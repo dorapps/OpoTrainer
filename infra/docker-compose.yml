@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: opotrainer_api
+    ports:
+      - "8000:8000"
+    env_file:
+      - ../.env
+    depends_on:
+      - postgres
+      - redis
+
+  worker:
+    build: ./worker
+    container_name: opotrainer_worker
+    env_file:
+      - ../.env
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:15
+    container_name: opotrainer_db
+    restart: always
+    environment:
+      POSTGRES_USER: opouser
+      POSTGRES_PASSWORD: opopass
+      POSTGRES_DB: opotrainer
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    container_name: opotrainer_redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:
