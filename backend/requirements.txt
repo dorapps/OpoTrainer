@@ -1,0 +1,28 @@
+# Web framework
+fastapi
+uvicorn[standard]
+
+# Database
+sqlalchemy
+psycopg2-binary
+alembic
+
+# Validation & settings
+pydantic
+python-dotenv
+
+# Auth (cuando la añadas)
+passlib[bcrypt]
+python-jose[cryptography]
+
+# Redis / cache
+redis
+
+# Background tasks (si usas Celery)
+celery
+
+# AI integrations (opcional pero recomendado para tu proyecto)
+openai
+
+# Utilities
+httpx
