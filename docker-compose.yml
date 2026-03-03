@@ -1,42 +1,20 @@
 services:
   backend:
-    build: ./backend
-    container_name: opotrainer_api
+    build: ../backend
+    env_file:
+      - ./env/.env.local
     ports:
       - "8000:8000"
-    env_file:
-      - .env
     depends_on:
-      - postgres
+      - db
       - redis
 
-  worker:
-    build: ./worker
-    container_name: opotrainer_worker
-    env_file:
-      - .env
-    depends_on:
-      - postgres
-      - redis
-
-  postgres:
+  db:
     image: postgres:15
-    container_name: opotrainer_db
-    restart: always
     environment:
-      POSTGRES_USER: opouser
-      POSTGRES_PASSWORD: opopass
-      POSTGRES_DB: opotrainer
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+      POSTGRES_DB: opotrainer_staging
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
 
   redis:
     image: redis:7
-    container_name: opotrainer_redis
-    ports:
-      - "6379:6379"
-
-volumes:
-  postgres_data:

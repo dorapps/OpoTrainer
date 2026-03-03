@@ -1,0 +1,11 @@
+services:
+  backend:
+    env_file:
+      - ./env/.env.staging
+    restart: always
+    ports:
+      - "80:8000"
+
+  db:
+    environment:
+      POSTGRES_DB: opotrainer_prod
