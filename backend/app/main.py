@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.database import engine, Base
 import time
 from sqlalchemy.exc import OperationalError
+from app.api import questions
 
 app = FastAPI(
     title="OpoTrainer API",
@@ -34,6 +35,7 @@ def startup():
             time.sleep(2)
 
 app.include_router(exams.router)
+app.include_router(questions.router)
 
 @app.get("/")
 def root():
