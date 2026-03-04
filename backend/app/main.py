@@ -1,5 +1,9 @@
 from fastapi import FastAPI
+from app.api import exams
 from fastapi.middleware.cors import CORSMiddleware
+from app.core.database import engine, Base
+import time
+from sqlalchemy.exc import OperationalError
 
 app = FastAPI(
     title="OpoTrainer API",
@@ -14,6 +18,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+@app.on_event("startup")
+def startup():
+    # Esperar a que la DB esté lista
+    retries = 5
+    while retries:
+        try:
+            Base.metadata.create_all(bind=engine)
+            print("Database connected ✅")
+            break
+        except OperationalError:
+            retries -= 1
+            print("Database not ready, retrying...")
+            time.sleep(2)
+
+app.include_router(exams.router)
 
 @app.get("/")
 def root():

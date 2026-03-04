@@ -8,4 +8,4 @@ services:
 
   db:
     environment:
-      POSTGRES_DB: opotrainer_prod
+      POSTGRES_DB: opotrainer_staging

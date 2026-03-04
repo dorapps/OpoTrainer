@@ -1,6 +1,6 @@
 services:
   backend:
-    build: ../backend
+    build: ./backend
     env_file:
       - ./env/.env.local
     ports:
@@ -12,9 +12,14 @@ services:
   db:
     image: postgres:15
     environment:
-      POSTGRES_DB: opotrainer_staging
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: opotrainer_local
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
   redis:
     image: redis:7
+
+volumes:
+  postgres_data:

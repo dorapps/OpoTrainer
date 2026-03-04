@@ -10,6 +10,7 @@ alembic
 # Validation & settings
 pydantic
 python-dotenv
+pydantic-settings
 
 # Auth (cuando la añadas)
 passlib[bcrypt]
