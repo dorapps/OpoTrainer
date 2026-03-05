@@ -15,7 +15,7 @@ class Question(Base):
     option_d = Column(String(255), nullable=False)
 
     correct_answer = Column(String(1), nullable=False)
-
+    topic = Column(String)
+    difficulty = Column(String)
     exam_id = Column(Integer, ForeignKey("exams.id"))
-
     exam = relationship("Exam", back_populates="questions")

@@ -1,28 +1,33 @@
-import json
-from app.services.llm.factory import get_llm_provider
+def generate_adaptive_questions(db, user_id, num_questions=10):
 
-def generate_questions_for_exam(title: str, num_questions: int = 5):
+    stats = get_user_topic_stats(db, user_id)
 
-    provider = get_llm_provider()
+    weak_topics = [
+        s["topic"] for s in stats if s["level"] == "low"
+    ]
 
-    system_prompt = "Eres experto en oposiciones en España."
+    system_prompt = """
+    Eres experto en oposiciones en España.
+    Genera preguntas tipo test realistas.
+    """
 
     user_prompt = f"""
-    Genera {num_questions} preguntas tipo test para un examen de oposiciones.
-    Título del examen: {title}
+    Genera {num_questions} preguntas tipo test.
 
-    Devuelve un JSON con esta estructura:
-    [
-      {{
-        "statement": "...",
-        "option_a": "...",
-        "option_b": "...",
-        "option_c": "...",
-        "option_d": "...",
-        "correct_answer": "A"
-      }}
-    ]
+    Prioriza estos temas:
+    {weak_topics}
+
+    Incluye:
+    - pregunta
+    - 4 opciones
+    - respuesta correcta
+    - tema
+    - dificultad
+
+    Devuelve JSON.
     """
+
+    provider = get_llm_provider()
 
     response = provider.generate(system_prompt, user_prompt)
 
