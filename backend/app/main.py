@@ -5,6 +5,7 @@ from app.core.database import engine, Base
 import time
 from sqlalchemy.exc import OperationalError
 from app.api import questions
+from app.api import answers
 
 app = FastAPI(
     title="OpoTrainer API",
@@ -36,6 +37,7 @@ def startup():
 
 app.include_router(exams.router)
 app.include_router(questions.router)
+app.include_router(answers.router)
 
 @app.get("/")
 def root():

@@ -18,4 +18,6 @@ class Question(Base):
     topic = Column(String)
     difficulty = Column(String)
     exam_id = Column(Integer, ForeignKey("exams.id"))
+    source = Column(String)  # ai | exam_real
+
     exam = relationship("Exam", back_populates="questions")
