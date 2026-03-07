@@ -13,3 +13,7 @@ class Exam(Base):
 
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     questions = relationship("Question", back_populates="exam", cascade="all, delete")
+    
+    name = Column(String)
+    organization = Column(String)
+    level = Column(String)

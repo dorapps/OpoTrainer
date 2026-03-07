@@ -21,3 +21,4 @@ class Question(Base):
     source = Column(String)  # ai | exam_real
 
     exam = relationship("Exam", back_populates="questions")
+    topic_id = Column(Integer, ForeignKey("topics.id"))
