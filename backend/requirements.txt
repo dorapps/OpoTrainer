@@ -27,3 +27,11 @@ openai
 
 # Utilities
 httpx
+
+#AI Generation
+faiss-cpu
+sentence-transformers
+numpy
+beautifulsoup4
+requests
+rank-bm25

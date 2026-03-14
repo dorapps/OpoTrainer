@@ -1,0 +1,52 @@
+{
+  "exam": {
+    "name": "Administrativo C1",
+    "organization": "Comunidad de Madrid",
+    "level": "C1"
+  },
+  "syllabus": {
+    "version": "2024"
+  },
+  "topics": [
+    {
+      "number": 1,
+      "title": "La Constitución Española de 1978"
+    },
+    {
+      "number": 2,
+      "title": "La Administración Pública"
+    },
+    {
+      "number": 3,
+      "title": "El procedimiento administrativo"
+    },
+    {
+      "number": 4,
+      "title": "El acto administrativo"
+    },
+    {
+      "number": 5,
+      "title": "La contratación del sector público"
+    },
+    {
+      "number": 6,
+      "title": "El personal al servicio de las Administraciones Públicas"
+    },
+    {
+      "number": 7,
+      "title": "Igualdad de género y violencia de género"
+    },
+    {
+      "number": 8,
+      "title": "La Unión Europea"
+    },
+    {
+      "number": 9,
+      "title": "Transparencia y buen gobierno"
+    },
+    {
+      "number": 10,
+      "title": "Protección de datos personales"
+    }
+  ]
+}
